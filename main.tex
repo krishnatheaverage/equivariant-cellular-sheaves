@@ -9,6 +9,22 @@
 \usepackage{enumitem}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\usetikzlibrary{patterns}
+\pgfplotsset{
+  ggplot/.style={
+    grid=major,
+    major grid style={gray!25,line width=0.4pt},
+    tick align=outside,
+    tick style={gray!50},
+    axis line style={gray!55},
+    label style={font=\small},
+    tick label style={font=\footnotesize},
+    legend cell align=left,
+    legend style={draw=gray!50,fill=white,font=\footnotesize},
+  },
+}
 
 \DeclareMathOperator{\im}{im}
 \DeclareMathOperator{\rank}{rank}
@@ -666,7 +682,24 @@ naphthalene         & 10 & yes & 0  & 0\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.80\linewidth]{fig_nonbonding.pdf}
+\begin{tikzpicture}
+\begin{axis}[
+  ggplot,
+  width=\linewidth, height=6cm,
+  ybar=1.2pt, bar width=5pt,
+  ymin=0, ymax=2.4, ytick={0,1,2},
+  ylabel={count},
+  symbolic x coords={ethylene,allyl,butadiene,pentadienyl,hexatriene,benzene,cyclobutadiene,cyclooctatetraene,trimethylenemethane,naphthalene},
+  xtick=data,
+  xticklabel style={rotate=45,anchor=east,font=\scriptsize},
+  enlarge x limits=0.05,
+  legend style={at={(0.02,0.97)},anchor=north west},
+]
+\addplot[draw=black,fill=black!72] coordinates {(ethylene,0)(allyl,1)(butadiene,0)(pentadienyl,1)(hexatriene,0)(benzene,0)(cyclobutadiene,2)(cyclooctatetraene,2)(trimethylenemethane,2)(naphthalene,0)};
+\addplot[draw=black,pattern=north east lines] coordinates {(ethylene,0)(allyl,1)(butadiene,0)(pentadienyl,1)(hexatriene,0)(benzene,0)(cyclobutadiene,0)(cyclooctatetraene,0)(trimethylenemethane,2)(naphthalene,0)};
+\legend{$\dim H^0$ (non-bonding states), lower bound $\big||V_A|-|V_B|\big|$}
+\end{axis}
+\end{tikzpicture}
 \caption{E2: for the alternant systems, the computed cohomology dimension
 $\dim H^0$ (non-bonding orbital count) and the topological lower bound
 $\big||V_A|-|V_B|\big|$ of Cor.~\ref{cor:alternant}.}
@@ -717,10 +750,35 @@ coordinate MLP (rotated)                  & 0.240 & 0.269 & 0.305 & 0.269\\
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.66\linewidth]{fig_learning_curve.pdf}
+\begin{tikzpicture}
+\begin{axis}[
+  ggplot,
+  width=0.82\linewidth, height=6.2cm,
+  xmode=log,
+  xtick={20,40,80,160}, xticklabels={20,40,80,160},
+  xlabel={number of training molecules},
+  ylabel={test MAE (gap, $|t|$ units)},
+  ymin=0.08, ymax=0.40,
+  legend style={at={(0.98,0.97)},anchor=north east},
+]
+\addplot[black,mark=*,mark size=1.8pt,line width=0.9pt,
+  error bars/.cd,y dir=both,y explicit]
+ coordinates {
+  (20,0.31944) +- (0,0.07707)
+  (40,0.20273) +- (0,0.01455)
+  (80,0.13659) +- (0,0.02314)
+  (160,0.11238) +- (0,0.00655)};
+\addplot[black!55,dashed,mark=square,mark size=1.8pt,line width=0.9pt]
+ coordinates {(20,0.23413)(40,0.21908)(80,0.23171)(160,0.22297)};
+\addplot[black!55,dotted,mark=triangle,mark size=2.2pt,line width=0.9pt]
+ coordinates {(20,0.24014)(40,0.26887)(80,0.30460)(160,0.26919)};
+\legend{equivariant sheaf (canonical = rotated), coordinate MLP (canonical), coordinate MLP (rotated)}
+\end{axis}
+\end{tikzpicture}
 \caption{E4: learning curves on the directional gap target. The equivariant sheaf
 model is more accurate and generalizes across orientations with no augmentation;
-the coordinate model plateaus and degrades on rotated test molecules.}
+the coordinate model plateaus and degrades on rotated test molecules. Error bars
+on the equivariant curve show $\pm1$ s.d.\ over three seeds.}
 \label{fig:e4}
 \end{figure}
 
