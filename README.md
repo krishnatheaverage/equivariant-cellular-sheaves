@@ -1,5 +1,7 @@
 # Equivariant Cellular Sheaves for Molecular Electronic Structure
 
+[![DOI](https://zenodo.org/badge/1276323947.svg)](https://doi.org/10.5281/zenodo.20788374)
+
 Code and paper source for **"Equivariant Cellular Sheaves for Molecular Electronic
 Structure: Bridging Sheaf Cohomology and *E*(3)-Equivariant Hamiltonian Learning"**
 (Krishna Harish).
