@@ -19,7 +19,6 @@ import torch, torch.nn as nn
 from numpy.linalg import eigvalsh, norm
 from scipy.spatial.transform import Rotation as Rot
 import networkx as nx
-import matplotlib; matplotlib.use("Agg"); import matplotlib.pyplot as plt
 
 torch.set_default_dtype(torch.float64)
 OUT = os.path.expanduser("~/topological-qc-paper")
@@ -124,21 +123,7 @@ def main():
                  "equiv_std": eq.std(0).tolist(), "seeds": seeds,
                  "target": "p-only tight-binding HOMO-LUMO gap"}
     json.dump(res, open(rp, "w"), indent=2)
-
-    fig, ax = plt.subplots(figsize=(5.8, 3.7))
-    ax.errorbar(sizes, EQ, yerr=eq.std(0), marker="o", capsize=3, color="#2c6fbb",
-                label="equivariant sheaf (canonical = rotated)")
-    ax.errorbar(sizes, CC, yerr=co_c.std(0), marker="s", capsize=3, color="#c44e52",
-                label="coordinate MLP (canonical)")
-    ax.errorbar(sizes, CR, yerr=co_r.std(0), marker="^", capsize=3, color="#dd8452",
-                ls="--", label="coordinate MLP (rotated)")
-    ax.set_xscale("log"); ax.set_xlabel("number of training molecules")
-    ax.set_ylabel(r"test MAE  (gap, $|t|$ units)")
-    ax.set_title("E4: equivariance gives lower error and rotation generalization", fontsize=10)
-    ax.legend(frameon=False, fontsize=8.5); ax.grid(alpha=0.25)
-    ax.spines[["top", "right"]].set_visible(False)
-    fig.tight_layout(); fig.savefig(os.path.join(OUT, "fig_learning_curve.pdf"))
-    print("\nsaved fig_learning_curve.pdf and merged E4 into results.json")
+    print("\nmerged E4 into results.json")
 
 if __name__ == "__main__":
     main()

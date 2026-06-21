@@ -12,9 +12,6 @@ import numpy as np
 import networkx as nx
 from numpy.linalg import eigvalsh, norm, eigh, svd, cholesky
 from scipy.spatial.transform import Rotation as Rot
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 
 OUT = os.path.expanduser("~/topological-qc-paper")
 np.set_printoptions(precision=4, suppress=True)
@@ -172,21 +169,6 @@ def run_E2():
     results["E2"] = [{"mol": r[0], "n": r[1], "bipartite": r[2],
                       "imbalance": r[3], "dimH0": r[4]} for r in rows]
     print("  -> all dim H^0 match known chemistry; bound dim H^0 >= ||VA|-|VB|| holds. PASS")
-
-    # figure: dim H^0 vs topological lower bound
-    alt = [r for r in rows if r[2]]
-    names = [r[0] for r in alt]; d0 = [r[4] for r in alt]; bnd = [r[3] for r in alt]
-    x = np.arange(len(alt)); wdt = 0.4
-    fig, ax = plt.subplots(figsize=(8.2, 3.2))
-    ax.bar(x - wdt/2, d0, wdt, label=r"$\dim H^0 = $ non-bonding states", color="#2c6fbb")
-    ax.bar(x + wdt/2, bnd, wdt, label=r"lower bound $||V_A|-|V_B||$", color="#c44e52")
-    ax.set_xticks(x); ax.set_xticklabels(names, rotation=35, ha="right", fontsize=8)
-    ax.set_ylabel("count"); ax.legend(frameon=False, fontsize=9)
-    ax.set_title("E2: sheaf cohomology counts non-bonding orbitals (alternant systems)",
-                 fontsize=10)
-    ax.spines[["top", "right"]].set_visible(False)
-    fig.tight_layout(); fig.savefig(os.path.join(OUT, "fig_nonbonding.pdf"))
-    plt.close(fig)
 
 
 # ============================================================================
@@ -366,18 +348,6 @@ def run_E4():
                      "sheaf_mae": sm.tolist(), "scalar_mae": gm.tolist(),
                      "sheaf_std": ss.tolist(), "scalar_std": gs.tolist(),
                      "improvement_pct": [100*(gm[j]-sm[j])/gm[j] for j in range(len(train_sizes))]}
-    fig, ax = plt.subplots(figsize=(5.6, 3.6))
-    ax.errorbar(train_sizes, sm, yerr=ss, marker="o", capsize=3,
-                label="equivariant sheaf (s+p, directional)", color="#2c6fbb")
-    ax.errorbar(train_sizes, gm, yerr=gs, marker="s", capsize=3,
-                label="isotropic scalar two-center", color="#c44e52")
-    ax.set_xscale("log"); ax.set_xlabel("number of training molecules")
-    ax.set_ylabel("test MAE  (per-atom energy, |t| units)")
-    ax.set_title("E4: data efficiency on a directional tight-binding target", fontsize=10)
-    ax.legend(frameon=False, fontsize=9); ax.spines[["top", "right"]].set_visible(False)
-    ax.grid(alpha=0.25)
-    fig.tight_layout(); fig.savefig(os.path.join(OUT, "fig_learning_curve.pdf"))
-    plt.close(fig)
     print("  -> sheaf spectrum is a more sample-efficient electronic descriptor. PASS")
 
 
@@ -401,4 +371,4 @@ if __name__ == "__main__":
     benzene_worked_example()      # E4 (trained) lives in e4_trainable.py
     with open(os.path.join(OUT, "experiments", "results.json"), "w") as f:
         json.dump(results, f, indent=2)
-    print("\nSaved results.json and figures (fig_nonbonding.pdf, fig_learning_curve.pdf).")
+    print("\nSaved results.json.")

@@ -22,8 +22,8 @@ external datasets.
 
 | Path | Description |
 |------|-------------|
-| `experiments/run_experiments.py` | E1 (Hamiltonian-to-sheaf embedding exact to machine precision), E2 (`dim H^0` = non-bonding-orbital counts over 11 conjugated molecules), E3 (*O*(3)-equivariance of the sheaf Laplacian), and the benzene worked example. Produces `fig_nonbonding.pdf`. |
-| `experiments/e4_trainable.py` | E4: equivariant sheaf vs. coordinate-MLP learning curves on a directional HOMO–LUMO-gap target (rotation generalization and data efficiency). Produces `fig_learning_curve.pdf`. |
+| `experiments/run_experiments.py` | E1 (Hamiltonian-to-sheaf embedding exact to machine precision), E2 (`dim H^0` = non-bonding-orbital counts over 11 conjugated molecules), E3 (*O*(3)-equivariance of the sheaf Laplacian), and the benzene worked example. |
+| `experiments/e4_trainable.py` | E4: equivariant sheaf vs. coordinate-MLP learning curves on a directional HOMO–LUMO-gap target (rotation generalization and data efficiency). |
 | `experiments/e5_h1_holonomy.py` | E5: `H^1` / Hodge 1-Laplacian checks — Betti number for the trivial sheaf, Z/2 holonomy for a Möbius ring, ring filling, and the Hodge cross-check `dim ker L_1 = dim H^1`. |
 | `experiments/results.json` | Cached numerical results. |
 | `main.tex`, `main.pdf` | Paper source and compiled PDF. |
@@ -38,8 +38,8 @@ redistributed here.
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-python experiments/run_experiments.py     # E1–E3 + benzene, writes fig_nonbonding.pdf
-python experiments/e4_trainable.py         # E4, writes fig_learning_curve.pdf
+python experiments/run_experiments.py     # E1-E3 + benzene -> results.json
+python experiments/e4_trainable.py         # E4 (trains; merges into results.json)
 python experiments/e5_h1_holonomy.py       # E5, prints all H^1 checks (asserts pass)
 ```
 
