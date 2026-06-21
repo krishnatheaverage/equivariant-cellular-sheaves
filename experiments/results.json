@@ -1,0 +1,203 @@
+{
+  "E1": {
+    "scalar": [
+      [
+        "ethylene",
+        0.0
+      ],
+      [
+        "allyl",
+        0.0
+      ],
+      [
+        "butadiene",
+        0.0
+      ],
+      [
+        "pentadienyl",
+        0.0
+      ],
+      [
+        "hexatriene",
+        0.0
+      ],
+      [
+        "benzene",
+        0.0
+      ],
+      [
+        "cyclobutadiene",
+        0.0
+      ],
+      [
+        "cyclooctatetraene",
+        0.0
+      ],
+      [
+        "cyclopentadienyl",
+        0.0
+      ],
+      [
+        "trimethylenemethane",
+        0.0
+      ],
+      [
+        "naphthalene",
+        0.0
+      ]
+    ],
+    "multi": [
+      [
+        2,
+        9.871780750502622e-16,
+        0.9999999999999991,
+        1.9971742018378833
+      ],
+      [
+        3,
+        8.234588905683256e-15,
+        0.9999999999999986,
+        2.6552940832670986
+      ],
+      [
+        4,
+        8.437574885940652e-15,
+        0.9999999999999987,
+        2.0534976909630296
+      ]
+    ],
+    "max_scalar_err": 0.0,
+    "max_multi_err": 8.437574885940652e-15
+  },
+  "E2": [
+    {
+      "mol": "ethylene",
+      "n": 2,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 0
+    },
+    {
+      "mol": "allyl",
+      "n": 3,
+      "bipartite": true,
+      "imbalance": 1,
+      "dimH0": 1
+    },
+    {
+      "mol": "butadiene",
+      "n": 4,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 0
+    },
+    {
+      "mol": "pentadienyl",
+      "n": 5,
+      "bipartite": true,
+      "imbalance": 1,
+      "dimH0": 1
+    },
+    {
+      "mol": "hexatriene",
+      "n": 6,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 0
+    },
+    {
+      "mol": "benzene",
+      "n": 6,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 0
+    },
+    {
+      "mol": "cyclobutadiene",
+      "n": 4,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 2
+    },
+    {
+      "mol": "cyclooctatetraene",
+      "n": 8,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 2
+    },
+    {
+      "mol": "cyclopentadienyl",
+      "n": 5,
+      "bipartite": false,
+      "imbalance": null,
+      "dimH0": 0
+    },
+    {
+      "mol": "trimethylenemethane",
+      "n": 4,
+      "bipartite": true,
+      "imbalance": 2,
+      "dimH0": 2
+    },
+    {
+      "mol": "naphthalene",
+      "n": 10,
+      "bipartite": true,
+      "imbalance": 0,
+      "dimH0": 0
+    }
+  ],
+  "E3": {
+    "equivariant_mean": 8.059116048451339e-16,
+    "reflection": 0.0,
+    "control_mean": 0.5833553619789122,
+    "n_trials": 200
+  },
+  "benzene": {
+    "spectrum": [
+      2.0,
+      1.0,
+      0.9999999999999996,
+      -0.9999999999999999,
+      -1.0000000000000004,
+      -1.9999999999999998
+    ],
+    "dimH0": 0,
+    "bound": 0
+  },
+  "E4": {
+    "train_sizes": [
+      20,
+      40,
+      80,
+      160
+    ],
+    "equiv_mae": [
+      0.31943895408811845,
+      0.20273329131037687,
+      0.13659412568856136,
+      0.11237569966314713
+    ],
+    "coord_canonical_mae": [
+      0.23413344424321939,
+      0.21907514931731487,
+      0.23170943552999132,
+      0.22296527804976887
+    ],
+    "coord_rotated_mae": [
+      0.24014053208407893,
+      0.26887253612478196,
+      0.3046009110422314,
+      0.26918631615170857
+    ],
+    "equiv_std": [
+      0.07707319045608131,
+      0.0145474429501824,
+      0.023140821772918874,
+      0.006546141574075795
+    ],
+    "seeds": 3,
+    "target": "p-only tight-binding HOMO-LUMO gap"
+  }
+}
