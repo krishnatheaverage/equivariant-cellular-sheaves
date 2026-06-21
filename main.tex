@@ -1,11 +1,12 @@
-\documentclass[11pt]{article}
+\documentclass[pdflatex,sn-mathphys-num]{sn-jnl}% Math and Physical Sciences Numbered Reference Style
 
-\usepackage[margin=1in]{geometry}
-\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
 \usepackage{booktabs}
 \usepackage{enumitem}
-\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-\usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
 
@@ -24,31 +25,27 @@
 \newcommand{\incid}{\trianglelefteq}
 \newcommand{\restr}[2]{\F_{#1\,\incid\,#2}}
 
-\theoremstyle{plain}
+\theoremstyle{thmstyleone}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
-\theoremstyle{definition}
+\theoremstyle{thmstyletwo}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\theoremstyle{thmstylethree}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{example}[theorem]{Example}
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-
-\title{\textbf{Equivariant Cellular Sheaves for Molecular Electronic Structure:\\
-Bridging Sheaf Cohomology and $E(3)$-Equivariant Hamiltonian Learning}}
-
-\author{Krishna Harish\\
-\texttt{krishnaharish2009@gmail.com}\\
-\small Elkins High School, Missouri City, TX, USA}
-
-\date{\today}
 
 \begin{document}
-\maketitle
 
-\begin{abstract}
+\title[Equivariant Cellular Sheaves for Molecular Electronic Structure]{Equivariant Cellular Sheaves for Molecular Electronic Structure: Bridging Sheaf Cohomology and $E(3)$-Equivariant Hamiltonian Learning}
+
+\author*[1]{\fnm{Krishna} \sur{Harish}}\email{krishnaharish2009@gmail.com}
+
+\affil[1]{\orgname{Elkins High School}, \orgaddress{\city{Missouri City}, \state{TX}, \country{USA}}}
+
+\abstract{%
 A cellular sheaf equips a regular cell complex with vector-space stalks and
 linear restriction maps, and its spectral theory is governed by a sheaf
 Laplacian $L_\F$: a symmetric positive-semidefinite operator whose kernel is the
@@ -83,8 +80,13 @@ Laplacian is $O(3)$-equivariant to machine precision, and an equivariant model
 attains lower error and rotation generalization on a directional electronic
 target. Our contribution is the sheaf-theoretic formalization and its
 topological invariants; equivariant Hamiltonian prediction itself is due to
-prior work.
-\end{abstract}
+prior work.}
+
+\keywords{cellular sheaves, sheaf cohomology, Hodge Laplacian, equivariant neural networks, electronic structure}
+
+\pacs[MSC Classification]{55N30, 05C50, 68T07, 92E10}
+
+\maketitle
 
 \section{Introduction}\label{sec:intro}
 

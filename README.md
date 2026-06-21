@@ -28,6 +28,10 @@ external datasets.
 | `experiments/results.json` | Cached numerical results. |
 | `main.tex`, `main.pdf` | Paper source and compiled PDF. |
 
+Building `main.tex` requires the Springer Nature `sn-jnl` LaTeX class (the
+*Journal of Applied and Computational Topology* template), which is not
+redistributed here.
+
 ## Reproducing the results
 
 ```bash

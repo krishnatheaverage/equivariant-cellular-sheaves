@@ -16,3 +16,8 @@ venv/
 *.bbl
 *.blg
 *.synctex.gz
+
+# Springer template (provided by the journal) and local-only submission files
+sn-jnl.cls
+*.bst
+cover_letter.txt
